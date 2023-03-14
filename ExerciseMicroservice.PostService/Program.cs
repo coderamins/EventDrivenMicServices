@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
 
 namespace ExerciseMicroservice.PostService
 {
@@ -13,7 +15,15 @@ namespace ExerciseMicroservice.PostService
     {
         public static void Main(string[] args)
         {
+            ListenForIntegrationEvents();
             CreateHostBuilder(args).Build().Run();
+        }
+
+        private static void ListenForIntegrationEvents()
+        {
+            var factory=new ConnectionFactory();
+            var connection=factory.CreateConnection();
+            
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
